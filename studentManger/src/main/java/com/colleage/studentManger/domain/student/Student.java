@@ -2,13 +2,13 @@ package com.colleage.studentManger.domain.student;
 
 import com.colleage.studentManger.domain.score.Score;
 import com.colleage.studentManger.domain.subject.Subject;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,6 +25,8 @@ public class Student {
 
     private String major;
 
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "student")
     private List<Score> scores;
 
