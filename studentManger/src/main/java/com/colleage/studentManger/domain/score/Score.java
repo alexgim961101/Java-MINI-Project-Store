@@ -3,10 +3,7 @@ package com.colleage.studentManger.domain.score;
 import com.colleage.studentManger.domain.student.Student;
 import com.colleage.studentManger.domain.subject.Subject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -23,6 +20,8 @@ public class Score {
     @Column(name = "score_id")
     private Long id;
 
+    @JsonIgnore
+    @ToString.Exclude
     @ManyToOne(targetEntity = Student.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;

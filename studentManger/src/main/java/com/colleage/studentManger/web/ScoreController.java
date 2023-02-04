@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -21,7 +22,7 @@ public class ScoreController {
     private final ScoreService scoreService;
 
     @PostMapping("/{studentId}")
-    public ResponseEntity enrollScore(@PathVariable Long studentId, ScoreEnrollDto scoreEnrollDto) {
+    public ResponseEntity enrollScore(@PathVariable Long studentId, @Valid ScoreEnrollDto scoreEnrollDto) {
         Score scoreEntity = scoreService.save(studentId, scoreEnrollDto);
         return ResponseEntity.status(HttpStatus.OK).body(scoreEntity);
     }

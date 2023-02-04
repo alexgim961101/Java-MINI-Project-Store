@@ -25,7 +25,7 @@ public class Student {
 
     private String major;
 
-    @JsonIgnore
+
     @ToString.Exclude
     @OneToMany(mappedBy = "student")
     private List<Score> scores;

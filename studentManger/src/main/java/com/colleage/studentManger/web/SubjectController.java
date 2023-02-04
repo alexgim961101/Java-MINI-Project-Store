@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/subject")
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class SubjectController {
     private final SubjectService subjectService;
 
     @PostMapping()
-    public ResponseEntity enrollSubject(SubjectEnrollDto subjectEnrollDto) {
+    public ResponseEntity enrollSubject(@Valid SubjectEnrollDto subjectEnrollDto) {
         Subject subjectEntity = subjectService.save(subjectEnrollDto);
         return ResponseEntity.status(HttpStatus.OK).body(subjectEntity);
     }
