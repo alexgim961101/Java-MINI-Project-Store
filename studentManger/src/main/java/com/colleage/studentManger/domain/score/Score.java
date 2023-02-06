@@ -29,7 +29,7 @@ public class Score {
     /**
      * 오류 발생 지점
      * LAZY로 할 경우 No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor 이런 에러 발생
-     * EAGER로 바꾸니 해결이 가능했다. but 이유는 아직 모름
+     * EAGER로 바꾸니 해결이 가능했다. but 이유는 아직 모름 / 프록시 초기화 문제
      * */
     @ManyToOne(targetEntity = Subject.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
