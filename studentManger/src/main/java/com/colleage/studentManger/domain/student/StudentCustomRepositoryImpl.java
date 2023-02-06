@@ -12,7 +12,7 @@ public class StudentCustomRepositoryImpl implements StudentCustomRepository {
     @Override
     public Page<Student> findAll(Pageable pageable) {
         qStudent = QStudent.student;
-        queryFactory.select(qStudent).from(qStudent)
-                .
+        queryFactory.select(qStudent).from(qStudent);
+        return null;
     }
 }
