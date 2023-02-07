@@ -10,18 +10,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/controller")
+@RequestMapping("/coupon")
 @RequiredArgsConstructor
 @Slf4j
 public class CouponController {
@@ -29,10 +26,22 @@ public class CouponController {
     private final CouponService couponService;
 
     @PostMapping("/enroll")
-    public BaseResponseDto<?> enrollCoupon(@Valid @RequestBody CouponEnrollDto couponEnrollDto, BindingResult bindingResult) {
+    public BaseResponseDto<CouponDto> enrollCoupon(@Valid @RequestBody CouponEnrollDto couponEnrollDto, BindingResult bindingResult) {
         checkValidation(bindingResult);
         CouponDto coupon = couponService.save(couponEnrollDto);
         return new BaseResponseDto<>(coupon);
+    }
+
+    @GetMapping()
+    public BaseResponseDto<List<CouponDto>> readAllCoupon() {
+        List<CouponDto> couponDtos = couponService.readAll();
+        return new BaseResponseDto<>(couponDtos);
+    }
+
+    @GetMapping("/filter")
+    public BaseResponseDto<List<CouponDto>> filteringReadAllCoupon() {
+        List<CouponDto> couponDtos = couponService.filteringReadAll();
+        return new BaseResponseDto<>(couponDtos);
     }
 
 
